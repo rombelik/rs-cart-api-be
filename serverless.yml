@@ -1,4 +1,8 @@
-service: serverless-example
+service: cart-service
+
+frameworkVersion: '3'
+
+useDotenv: true
 
 plugins:
   - serverless-offline
@@ -8,6 +12,9 @@ provider:
   runtime: nodejs14.x
   stage: dev
   region: eu-west-1
+  environment: 
+    PORT: ${env:PORT1}
+
 
 functions:
   main:

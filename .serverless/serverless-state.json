@@ -1,14 +1,17 @@
 {
   "service": {
-    "service": "serverless-example",
+    "service": "cart-service",
     "serviceObject": {
-      "name": "serverless-example"
+      "name": "cart-service"
     },
     "provider": {
       "name": "aws",
       "runtime": "nodejs14.x",
       "stage": "dev",
       "region": "eu-west-1",
+      "environment": {
+        "PORT": "1234"
+      },
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
         "AWSTemplateFormatVersion": "2010-09-09",
@@ -86,7 +89,7 @@
           "MainLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/serverless-example-dev-main"
+              "LogGroupName": "/aws/lambda/cart-service-dev-main"
             }
           },
           "IamRoleLambdaExecution": {
@@ -114,7 +117,7 @@
                     "Fn::Join": [
                       "-",
                       [
-                        "serverless-example",
+                        "cart-service",
                         "dev",
                         "lambda"
                       ]
@@ -131,7 +134,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-example-dev*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/cart-service-dev*:*"
                           }
                         ]
                       },
@@ -142,7 +145,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-example-dev*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/cart-service-dev*:*:*"
                           }
                         ]
                       }
@@ -155,7 +158,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "serverless-example",
+                    "cart-service",
                     "dev",
                     {
                       "Ref": "AWS::Region"
@@ -173,13 +176,18 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-example/dev/1666885424669-2022-10-27T15:43:44.669Z/serverless-example.zip"
+                "S3Key": "serverless/cart-service/dev/1667055236937-2022-10-29T14:53:56.937Z/cart-service.zip"
               },
               "Handler": "dist/main.handler",
               "Runtime": "nodejs14.x",
-              "FunctionName": "serverless-example-dev-main",
+              "FunctionName": "cart-service-dev-main",
               "MemorySize": 1024,
               "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "PORT": "1234"
+                }
+              },
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -191,20 +199,20 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersionEUHjOVFr3sdiaaT7VI60PRncUo87P31ySfTS3imCbck": {
+          "MainLambdaVersionVOVnoUbUPLiV07R5OS3xLXlVolwJqL5sdWAGPhgKc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "7bZ+s3X6N9IWgF0DZCAVy42bLuaecHwRkCt1ajjsPq4="
+              "CodeSha256": "p/o981zDVsmFHZrB1yVSu0Dfj2kRujOZ2uim8uPIHGY="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-serverless-example",
+              "Name": "dev-cart-service",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -323,7 +331,7 @@
               "MainLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1666885390533": {
+          "ApiGatewayDeployment1667055199000": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -380,16 +388,16 @@
               "Ref": "ServerlessDeploymentBucket"
             },
             "Export": {
-              "Name": "sls-serverless-example-dev-ServerlessDeploymentBucketName"
+              "Name": "sls-cart-service-dev-ServerlessDeploymentBucketName"
             }
           },
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersionEUHjOVFr3sdiaaT7VI60PRncUo87P31ySfTS3imCbck"
+              "Ref": "MainLambdaVersionVOVnoUbUPLiV07R5OS3xLXlVolwJqL5sdWAGPhgKc"
             },
             "Export": {
-              "Name": "sls-serverless-example-dev-MainLambdaFunctionQualifiedArn"
+              "Name": "sls-cart-service-dev-MainLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -415,7 +423,7 @@
               ]
             },
             "Export": {
-              "Name": "sls-serverless-example-dev-ServiceEndpoint"
+              "Name": "sls-cart-service-dev-ServiceEndpoint"
             }
           }
         }
@@ -527,19 +535,21 @@
             }
           }
         ],
-        "name": "serverless-example-dev-main",
+        "name": "cart-service-dev-main",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersionEUHjOVFr3sdiaaT7VI60PRncUo87P31ySfTS3imCbck"
+        "versionLogicalId": "MainLambdaVersionVOVnoUbUPLiV07R5OS3xLXlVolwJqL5sdWAGPhgKc"
       }
     },
     "configValidationMode": "warn",
     "serviceFilename": "serverless.yml",
     "initialServerlessConfig": {
-      "service": "serverless-example",
+      "service": "cart-service",
+      "frameworkVersion": "3",
+      "useDotenv": true,
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
       },
@@ -552,10 +562,10 @@
     },
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/home/antares/work/rs/aws/rs-cart-api-be/.serverless/serverless-example.zip"
+    "artifact": "/home/antares/work/rs/aws/rs-cart-api-be/.serverless/cart-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-example/dev/1666885424669-2022-10-27T15:43:44.669Z",
-    "artifact": "serverless-example.zip"
+    "artifactDirectoryName": "serverless/cart-service/dev/1667055236937-2022-10-29T14:53:56.937Z",
+    "artifact": "cart-service.zip"
   }
 }

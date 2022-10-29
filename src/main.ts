@@ -8,18 +8,17 @@ let server: Handler;
 
 import { AppModule } from './app.module';
 
-const port = process.env.PORT || 4000;
+const port = parseInt(<string>process.env.PORT, 10) || 3000
 
 async function bootstrap(): Promise<Handler> {
   const app = await NestFactory.create(AppModule);
-  // await app.init();
+  await app.init();
 
   app.enableCors({
     origin: (req, callback) => callback(null, true),
   });
   app.use(helmet());
   const expressApp = app.getHttpAdapter().getInstance();
-
   await expressApp.listen(port);
 
   return serverlessExpress({ app: expressApp });
@@ -33,3 +32,7 @@ export const handler: Handler = async (
   server = server ?? (await bootstrap());
   return server(event, context, callback);
 };
+
+bootstrap().then(() => {
+  console.log('App is running on %s port', port);
+});
