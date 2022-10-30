@@ -1,7 +1,10 @@
 
 import { Module } from '@nestjs/common';
 import { TypeOrmCoreModule } from '@nestjs/typeorm/dist/typeorm-core.module';
-import { Carts } from './entities/entity.carts';
+import { Cart } from './entities/entity.cart';
+import { User } from './entities/entity.user';
+import { Order } from './entities/entity.order';
+import { CartItem } from './entities/entity.cart_item';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -21,7 +24,7 @@ import { ConfigModule } from '@nestjs/config';
       // baseUrl: "./",
       logging: true,
       migrationsRun: true,
-      entities: [Carts],
+      entities: [Cart, User, CartItem, Order],
       // migrations: ['src/database/migration/**/*.ts'],
       // subscribers: ['src/subscriber/**/*.ts'],
       // seeds: [

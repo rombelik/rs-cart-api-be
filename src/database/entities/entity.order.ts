@@ -1,9 +1,9 @@
 import { Entity, Column, ManyToOne, PrimaryGeneratedColumn, BaseEntity, JoinColumn } from "typeorm";
 
-import {Users} from "./entity.users"; 
+import {User} from "./entity.user"; 
 
 @Entity()
-export class Orders extends BaseEntity{
+export class Order extends BaseEntity{
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
@@ -19,12 +19,13 @@ export class Orders extends BaseEntity{
   @Column('text')
   public comments: string;
 
-  @Column('enum')
-  public status: 'enabled' | 'disabled';
+  // @Column('enum')
+  // public status: 'enabled' | 'disabled';
 
-  @Column('number')
-  public total: number;
+  // @Column('number')
+  // public total: number;
 
-  @ManyToOne(type => Users) @JoinColumn() 
-  user_id: Users;
+  @ManyToOne(() => User, (user) => user.orders)
+  user: User
+
 }

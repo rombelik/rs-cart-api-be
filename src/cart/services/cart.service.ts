@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Carts } from '../../database/entities/entity.carts';
+import { Cart } from '../../database/entities/entity.cart';
 import { v4 } from 'uuid';
 @Injectable()
 export class CartService {
   
   async getCarts() {
-    return await Carts.find();
+    return await Cart.find();
   }
 
   // async findOrCreateByUserId(userId: string): Promise<Carts> {
