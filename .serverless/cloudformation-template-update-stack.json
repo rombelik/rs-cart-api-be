@@ -161,7 +161,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cart-service/dev/1667055236937-2022-10-29T14:53:56.937Z/cart-service.zip"
+          "S3Key": "serverless/cart-service/dev/1667157054684-2022-10-30T19:10:54.684Z/cart-service.zip"
         },
         "Handler": "dist/main.handler",
         "Runtime": "nodejs14.x",
@@ -170,7 +170,12 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "PORT": "1234"
+            "DATABASE_HOST": "rsdb.c9qxwr9mrxiz.eu-west-1.rds.amazonaws.com",
+            "DATABASE_PORT": "5432",
+            "DATABASE_USERNAME": "postgres",
+            "DATABASE_PASSWORD": "postgres",
+            "DATABASE_NAME": "rsdb",
+            "PORT": "3000"
           }
         },
         "Role": {
@@ -184,14 +189,14 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionVOVnoUbUPLiV07R5OS3xLXlVolwJqL5sdWAGPhgKc": {
+    "MainLambdaVersionqN88Zm2Yr0YgbVpteU8t7rXiYXgwqyVWxOFxSXJ1lk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-        "CodeSha256": "p/o981zDVsmFHZrB1yVSu0Dfj2kRujOZ2uim8uPIHGY="
+        "CodeSha256": "CjDLa+PbG/6FAiV2ET1jhwfBq7CEJLl06vI2kogaGqE="
       }
     },
     "ApiGatewayRestApi": {
@@ -316,7 +321,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1667055199000": {
+    "ApiGatewayDeployment1667157020709": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -379,7 +384,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionVOVnoUbUPLiV07R5OS3xLXlVolwJqL5sdWAGPhgKc"
+        "Ref": "MainLambdaVersionqN88Zm2Yr0YgbVpteU8t7rXiYXgwqyVWxOFxSXJ1lk"
       },
       "Export": {
         "Name": "sls-cart-service-dev-MainLambdaFunctionQualifiedArn"
