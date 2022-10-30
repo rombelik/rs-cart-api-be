@@ -16,24 +16,24 @@ export class CartController {
 
   // @UseGuards(JwtAuthGuard)
   // @UseGuards(BasicAuthGuard)
-  // @Get('')
-  // async findAll() {
-  //   const carts = await this.cartService.getCarts()
-  //   console.log('carts', carts)
-  //   return {carts}
-  // }
-  
-  @Get()
-  findUserCart(@Req() req: AppRequest) {
-    // const cart = this.cartService.findOrCreateByUserId(getUserIdFromRequest(req));
-
-    // return {
-    //   statusCode: HttpStatus.OK,
-    //   message: 'OK',
-    //   data: { cart, total: calculateCartTotal(cart) },
-    // }
-    return {}
+  @Get('')
+  async findAll() {
+    const carts = await this.cartService.getCarts()
+    console.log('carts', carts)
+    return {carts}
   }
+  
+  // @Get()
+  // findUserCart(@Req() req: AppRequest) {
+  //   // const cart = this.cartService.findOrCreateByUserId(getUserIdFromRequest(req));
+
+  //   // return {
+  //   //   statusCode: HttpStatus.OK,
+  //   //   message: 'OK',
+  //   //   data: { cart, total: calculateCartTotal(cart) },
+  //   // }
+  //   return {}
+  // }
 
   // @UseGuards(JwtAuthGuard)
   // @UseGuards(BasicAuthGuard)

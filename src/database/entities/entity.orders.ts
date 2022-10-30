@@ -10,32 +10,21 @@ export class Orders extends BaseEntity{
   @Column('uuid')
   public cart_id: string;
 
-  @Column('uuid')
-  public payment: string;
+  @Column('simple-json')
+  public payment: { name: string; value: string };
 
-  @Column('uuid')
-  public delivery: string;
+  @Column('simple-json')
+  public delivery: { name: string; value: string };
 
-  @Column('uuid')
+  @Column('text')
   public comments: string;
 
-  @Column('uuid')
-  public status: string;
+  @Column('enum')
+  public status: 'enabled' | 'disabled';
 
-  @Column('uuid')
-  public total: string;
+  @Column('number')
+  public total: number;
 
   @ManyToOne(type => Users) @JoinColumn() 
   user_id: Users;
 }
-
-
-
-    // id - uuid
-    // user_id - uuid
-    // cart_id - uuid (Foreign key from carts.id)
-    // payment - JSON
-    // delivery - JSON
-    // comments - text
-    // status - ENUM or text
-    // total - number
