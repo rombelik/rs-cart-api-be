@@ -1,35 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { Carts } from '../../database/entities/entity.cart';
+import { Carts } from '../../database/entities/entity.carts';
+import { v4 } from 'uuid';
 @Injectable()
 export class CartService {
   
   async getCarts() {
     return await Carts.find();
   }
+
+  // async findOrCreateByUserId(userId: string): Promise<Carts> {
+  //   const userCart = await this.findByUserId(userId);
+
+  //   if (userCart) {
+  //     return await userCart;
+  //   }
+
+  //   return await this.createByUserId(userId);
+  // }
+
+  // async findByUserId(userId: string): Promise<Carts> {
+  //   return await this.userCarts[ userId ];
+  // }
+
+  // async createByUserId(userId: string) {
+  //   const id = v4(v4());
+  //   const userCart = {
+  //     id,
+  //   };
+
+
+  //   return userCart;
+  // }
+
+
 }
-// export class CartService {
-//   constructor(@InjectRepository(Cart) private readonly repo: Repository<Cart>) { }
-
-//   // public async findByUserId() {
-//   //   return await this.repo.find();
-//   // }
-  
-//   // public async findOrCreateByUserId() {
-//   //   return await this.repo.find();
-//   // }
-
-//   // public async getAll() {
-//   //   return await this.repo.find();
-//   // }
-
-//   public async getAll() {
-//     return await this.createQueryBuilder()
-//     .select("user")
-//     .from(User, "user")
-//     .where("user.id = :id", { id: 1 })
-//     .getOne()
-//   }
-// }
 
 // // import { Cart } from '../models';
 // // import { Cart } from '../../database/entities/entity.cart'

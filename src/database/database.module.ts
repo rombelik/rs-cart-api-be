@@ -1,7 +1,7 @@
 
 import { Module } from '@nestjs/common';
 import { TypeOrmCoreModule } from '@nestjs/typeorm/dist/typeorm-core.module';
-import { Carts } from './entities/entity.cart';
+import { Carts } from './entities/entity.carts';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
