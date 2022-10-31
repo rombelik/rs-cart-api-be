@@ -161,7 +161,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cart-service/dev/1667168885236-2022-10-30T22:28:05.236Z/cart-service.zip"
+          "S3Key": "serverless/cart-service/dev/1667243194453-2022-10-31T19:06:34.453Z/cart-service.zip"
         },
         "Handler": "dist/main.handler",
         "Runtime": "nodejs14.x",
@@ -175,7 +175,7 @@
             "DATABASE_USERNAME": "postgres",
             "DATABASE_PASSWORD": "postgres",
             "DATABASE_NAME": "rsdb",
-            "PORT": "5000"
+            "PORT": "3001"
           }
         },
         "Role": {
@@ -189,14 +189,14 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionNyISwKSYKJS6sXuiXen4VEHrbncqNl2n8xWTeGJaCSQ": {
+    "MainLambdaVersionupbUse6yaKvLk2uZxohwSEPiYZApPqMDNzbWefzicg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-        "CodeSha256": "1FUcYwsyrv4xvh40EQTSVefz1PcLIJlG7fuCr04pKk0="
+        "CodeSha256": "n27sewNZAVSOO88xsyTQwz+JwZbqDuIIGwbuTNUflEQ="
       }
     },
     "ApiGatewayRestApi": {
@@ -321,7 +321,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1667168830209": {
+    "ApiGatewayDeployment1667243149840": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -384,7 +384,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionNyISwKSYKJS6sXuiXen4VEHrbncqNl2n8xWTeGJaCSQ"
+        "Ref": "MainLambdaVersionupbUse6yaKvLk2uZxohwSEPiYZApPqMDNzbWefzicg"
       },
       "Export": {
         "Name": "sls-cart-service-dev-MainLambdaFunctionQualifiedArn"

@@ -35,19 +35,6 @@ export class CartService {
     return await this.createByUserId(userId);
   }
 
-  // async findByUserId(userId: string) {
-  //   const mockUserId = '25ca568f-9f30-470f-k865-6ab03c37adc5'
-  //   const result = await this.cartRepository.createQueryBuilder('cart')
-  //     .where('user_id = userId', {
-  //       userId: mockUserId
-  //     })
-  //     .getOne();
-
-  //     console.log('result--------', result)
-  //     return result
-    
-  // }
-
   async findByUserId(userId: string) {
     
     const cart = await Cart.createQueryBuilder('cart')

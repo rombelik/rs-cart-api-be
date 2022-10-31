@@ -10,10 +10,10 @@ export class Order extends BaseEntity{
   @Column('uuid')
   public cart_id: string;
 
-  @Column('simple-json')
+  @Column({type: 'jsonb'})
   public payment: { name: string; value: string };
 
-  @Column('simple-json')
+  @Column({type: 'jsonb'})
   public delivery: { name: string; value: string };
 
   @Column('text')
