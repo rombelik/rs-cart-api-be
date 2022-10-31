@@ -19,7 +19,7 @@ async function bootstrap(): Promise<Handler> {
   });
   app.use(helmet());
   const expressApp = app.getHttpAdapter().getInstance();
-  // await expressApp.listen(port); // to comment before deploy to aws
+  await expressApp.listen(port); // to comment before deploy to aws
 
   return serverlessExpress({ app: expressApp });
 }
@@ -33,6 +33,6 @@ export const handler: Handler = async (
   return server(event, context, callback);
 };
 
-// bootstrap().then(() => { // to comment before deploy to aws
-//   console.log('App is running on %s port', port);
-// });
+bootstrap().then(() => { // to comment before deploy to aws
+  console.log('App is running on %s port', port);
+});

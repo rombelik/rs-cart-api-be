@@ -1,5 +1,6 @@
-import { CreateDateColumn, UpdateDateColumn, Entity, PrimaryGeneratedColumn, BaseEntity, OneToMany, OneToOne } from "typeorm";
+import { CreateDateColumn, UpdateDateColumn, Entity, PrimaryGeneratedColumn, BaseEntity, OneToOne, OneToMany, JoinColumn } from "typeorm";
 import { User } from './entity.user'
+import { CartItem } from './entity.cart_item'
 
 @Entity()
 export class Cart extends BaseEntity{
@@ -12,6 +13,14 @@ export class Cart extends BaseEntity{
   @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
   public updated_at: Date;
 
-  @OneToOne(() => User, (user) => user.cart)
+  @OneToOne(() => User)
+  @JoinColumn()
   user: User
+
+  @OneToMany(
+    () => CartItem,
+    items => items.cart
+  )
+  items: CartItem[];
+
 }

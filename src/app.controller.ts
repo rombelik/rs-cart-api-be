@@ -14,7 +14,7 @@ export class AppController {
     };
   }
 
-  @UseGuards(LocalAuthGuard)
+  // @UseGuards(LocalAuthGuard)
   @Post('api/auth/login')
   async login(@Request() req) {
     console.log('req------------------->', req.body)
@@ -29,7 +29,7 @@ export class AppController {
     };
   }
 
-  @UseGuards(BasicAuthGuard)
+  // @UseGuards(BasicAuthGuard)
   @Get('api/profile')
   async getProfile(@Request() req) {
     return {

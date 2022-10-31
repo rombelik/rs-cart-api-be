@@ -1,10 +1,19 @@
-import { Entity, PrimaryColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryColumn, Column, BaseEntity, ManyToOne, JoinColumn } from "typeorm";
 
+import { Cart } from './entity.cart'
+import { Product } from './entity.product'
 @Entity()
 export class CartItem extends BaseEntity{
   @PrimaryColumn('uuid')
-  public cart_id: string;
+  id: string;
 
   @Column('uuid')
-  public product_id: string;
+  productId: string;
+
+  @Column()
+  count: number;
+
+  @ManyToOne(() => Cart)
+  @JoinColumn({name: 'cartId'})
+  cart: Cart;
 }

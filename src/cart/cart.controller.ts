@@ -2,38 +2,40 @@ import { Controller, Get, Delete, Put, Body, Req, Post, UseGuards, HttpStatus } 
 
 // import { BasicAuthGuard, JwtAuthGuard } from '../auth';
 import { OrderService } from '../order';
+import { CartService }  from './services/cart.service'
 import { AppRequest, getUserIdFromRequest } from '../shared';
 
 import { calculateCartTotal } from './models-rules';
-import { CartService } from './services';
+// import { CartService } from './services';
 
 @Controller('api/profile/cart')
 export class CartController {
   constructor(
     private cartService: CartService,
-    private orderService: OrderService
+    // private orderService: OrderService
   ) { }
 
   // @UseGuards(JwtAuthGuard)
   // @UseGuards(BasicAuthGuard)
-  @Get('')
-  async findAll() {
-    const carts = await this.cartService.getCarts()
-    console.log('carts', carts)
-    return {carts}
-  }
-  
-  // @Get()
-  // findUserCart(@Req() req: AppRequest) {
-  //   // const cart = this.cartService.findOrCreateByUserId(getUserIdFromRequest(req));
-
-  //   // return {
-  //   //   statusCode: HttpStatus.OK,
-  //   //   message: 'OK',
-  //   //   data: { cart, total: calculateCartTotal(cart) },
-  //   // }
-  //   return {}
+  // @Get('')
+  // async findAll() {
+  //   const carts = await this.cartService.getCarts()
+  //   console.log('carts', carts)
+  //   return {carts}
   // }
+  
+  @Get()
+  async findUserCart(@Req() req: AppRequest) {
+    const mockUserId = 'ec40adf7-44fe-4d9d-bed9-58d55152c508'
+    // const cart = await this.cartService.findByUserId(getUserIdFromRequest(req));
+    const cart = await this.cartService.findByUserId(mockUserId);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'OK',
+      data: { 'cart': cart },
+    }
+  }
 
   // @UseGuards(JwtAuthGuard)
   // @UseGuards(BasicAuthGuard)
