@@ -12,7 +12,6 @@ export class UserController {
   async findOne(
     @Param('id') id: string
   ) {
-    console.log('get id------------------------')
     return this.userService.findOne(id);
   }
 

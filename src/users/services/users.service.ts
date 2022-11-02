@@ -8,14 +8,18 @@ import { User } from '../../database/entities/entity.user';
 export class UserService {
   private readonly users: Record<string, User>;
 
-  async findOne(userId: string): Promise<User> {
+  async findOne(userId: string): Promise<any>{
+    try {
+      const user = await User.findOne({
+        where: {
+          id: userId
+        }
+      });
+      return user;
+    } catch (e) {
+      return {error: e.message}
+    }
 
-    const user = await User.findOne({
-      where: {
-        id: userId
-      }
-    });
-    return user;
   }
 
   // async createOne({ name, password }: User): User {

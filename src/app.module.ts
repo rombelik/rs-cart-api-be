@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { CartController } from './cart/cart.controller'
 import { UserController } from './users/users.controller'
+import { OrderController } from './order/order.controller'
 import { configService } from './config/config.service';
 import { CartModule } from './cart/cart.module';
 import { AuthModule } from './auth/auth.module';
@@ -23,7 +24,8 @@ import { UserService } from './users/services/users.service'
   controllers: [
     AppController,
     CartController,
-    UserController
+    UserController,
+    OrderController
   ],
   providers: [CartService, UserService],
 })

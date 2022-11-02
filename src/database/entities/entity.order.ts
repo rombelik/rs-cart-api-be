@@ -8,7 +8,7 @@ export class Order extends BaseEntity{
   public id: string;
 
   @Column('uuid')
-  public cart_id: string;
+  public cartId: string;
 
   @Column({type: 'jsonb'})
   public payment: { name: string; value: string };
