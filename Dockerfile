@@ -45,8 +45,8 @@ FROM node:16.10-alpine3.14 AS production
 COPY --from=build /usr/app/node_modules ./node_modules
 COPY --from=build /usr/app/dist ./dist
 
-ENV PORT 8080
-EXPOSE 8080
+ENV PORT 3000
+EXPOSE 3000
 
 # CMD npm run build && npm run start:dev
 CMD [ "node", "dist/main.js" ]
