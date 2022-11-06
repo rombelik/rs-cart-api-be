@@ -4,7 +4,7 @@ import { LocalAuthGuard, AuthService, JwtAuthGuard, BasicAuthGuard } from './aut
 @Controller()
 export class AppController {
 
-  constructor(private authService: AuthService) {}
+  // constructor(private authService: AuthService) {}
 
   @Get([ '', 'ping' ])
   healthCheck(): any {
@@ -14,29 +14,30 @@ export class AppController {
     };
   }
 
-  @UseGuards(LocalAuthGuard)
-  @Post('api/auth/login')
-  async login(@Request() req) {
-    const token = this.authService.login(req.user, 'basic');
+  // @UseGuards(LocalAuthGuard)
+  // @Post('api/auth/login')
+  // async login(@Request() req) {
+  //   console.log('req----------->', req.body)
+  //   const token = this.authService.login(req.user, 'basic');
 
-    return  {
-      statusCode: HttpStatus.OK,
-      message: 'OK',
-      data: {
-        ...token,
-      },
-    };
-  }
+  //   return  {
+  //     statusCode: HttpStatus.OK,
+  //     message: 'OK',
+  //     data: {
+  //       ...token,
+  //     },
+  //   };
+  // }
 
-  @UseGuards(BasicAuthGuard)
-  @Get('api/profile')
-  async getProfile(@Request() req) {
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'OK',
-      data: {
-        user: req.user,
-      },
-    };
-  }
+  // @UseGuards(BasicAuthGuard)
+  // @Get('api/profile')
+  // async getProfile(@Request() req) {
+  //   return {
+  //     statusCode: HttpStatus.OK,
+  //     message: 'OK',
+  //     data: {
+  //       user: req.user,
+  //     },
+  //   };
+  // }
 }

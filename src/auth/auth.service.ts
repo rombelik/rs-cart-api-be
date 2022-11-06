@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/services/users.service';
+import { UserService } from '../users/services/users.service';
 import { User } from '../users/models';
 import { contentSecurityPolicy } from 'helmet';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private usersService: UsersService,
+    private usersService: UserService,
     private jwtService: JwtService
   ) {}
 
@@ -18,7 +18,7 @@ export class AuthService {
       return user;
     }
 
-    return this.usersService.createOne({ name, password })
+    return undefined
   }
 
   login(user: User, type) {
